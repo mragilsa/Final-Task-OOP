@@ -24,7 +24,7 @@
         <h2>Admin Page</h2>
 
         <div class="button-group">
-            <a href="add-book.jsp" class="btn btn-primary">Add Book</a>
+            <a href="admin-page.jsp?mode=add" class="btn btn-primary">Add Book</a>
             <a href="view-transaction.jsp" class="btn btn-success">View Transaction</a>
             <a href="member-view" class="btn btn-info">View Member</a>
         </div>
@@ -48,8 +48,8 @@
                     <td>James Clear</td>
                     <td>2018</td>
                     <td>100</td>
-                    <td><a href="#">Edit</a></td>
-                    <td><a href="#" style="color:red;">Delete</a></td>
+                    <td><a href="admin-page.jsp?mode=edit&id=001">Edit</a></td>
+                    <td><a href="admin-page.jsp?mode=delete&id=001" style="color:red;">Delete</a></td>
                 </tr>
                 <tr>
                     <td>002</td>
@@ -57,11 +57,20 @@
                     <td>BJ Fogg PhD</td>
                     <td>2021</td>
                     <td>100</td>
-                    <td><a href="#">Edit</a></td>
-                    <td><a href="#" style="color:red;">Delete</a></td>
+                    <td><a href="admin-page.jsp?mode=edit&id=001">Edit</a></td>
+                    <td><a href="admin-page.jsp?mode=delete&id=001" style="color:red;">Delete</a></td>
                 </tr>
             </tbody>
         </table>
     </main>
+    <%
+        String mode = request.getParameter("mode");
+        if ("add".equals(mode) || "edit".equals(mode) || "delete".equals(mode)) {
+        RequestDispatcher rd = request.getRequestDispatcher("bookForm-popup.jsp");
+        rd.include(request, response);
+        }
+    %>
+
+
 </body>
 </html>

@@ -105,10 +105,13 @@ form button {
     cursor: pointer;
     font-weight: 600;
     text-align: center;
+    border: none;
+    
 }
 
 form button:hover {
     background-color: #0056b3;
+    
 }
 
 footer {
@@ -150,11 +153,13 @@ th {
 .btn-primary {
     background-color: #3366FF;
     color: white;
+    border: none;
 }
 
 .btn-success {
     background-color: #28a745;
     color: white;
+    
 }
 
 .btn-info {
@@ -164,4 +169,99 @@ th {
 
 .btn-primary:hover, .btn-success:hover {
     opacity: 0.8;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 30px 40px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.modal-content p {
+  font-size: 16px;
+  margin: 15px 0 25px;
+  color: #333;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #666;
+  text-decoration: none;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.close-button:hover {
+  color: red;
+}
+
+
+.btn-delete {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.btn-delete:hover {
+  background-color: #357ab8;
+}
+
+.form {
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+.btn-form-save {
+    border-radius: 8px;
+    
+}
+
+.form-del {
+    border: none;
+    background: none;
+    box-shadow: none;
+}
+
+.input-form input {
+  border: 1px solid #ccc;
+  border-radius: 8px; 
+  padding: 10px;
+  font-family: 'Dosis', sans-serif;
 }

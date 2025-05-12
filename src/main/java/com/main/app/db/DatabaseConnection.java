@@ -13,8 +13,8 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         Connection conn = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/oop_db"; 
-            String user = ""; //YOUR USERNAME 
+            String url = "jdbc:mysql://localhost:3306/db_oop"; 
+            String user = "root"; //YOUR USERNAME 
             String password = ""; //YOUR PASSWORD
 
             Class.forName("com.mysql.cj.jdbc.Driver");
