@@ -1,84 +1,79 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.main.app.dao;
-
 
 import com.main.app.model.Book;
 import java.sql.*;
 import java.util.*;
 
-/**
- *
- * @author Farriz
- */
 public class BookDAO {
+
     private final Connection connection;
-    
+
     public BookDAO(Connection connection) {
         this.connection = connection;
     }
-    
+
     public void addBook(Book book) throws SQLException {
-        String sql = "INSERT INTO books (title, author, year, stock) values (?, ?, ?, ?)";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, book.getTitle());
-            stmt.setString(2, book.getAuthor());
-            stmt.setString(3, book.getYear());
-            stmt.setInt(4, book.getStock());
-            stmt.executeUpdate();
-        }
+        String sql = "INSERT INTO books (id, title, author, year, stock) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, book.getId());
+        stmt.setString(2, book.getTitle());
+        stmt.setString(3, book.getAuthor());
+        stmt.setString(4, book.getYear());
+        stmt.setInt(5, book.getStock());
+        stmt.executeUpdate();
     }
-    
+
     public List<Book> getAllBooks() throws SQLException {
         List<Book> books = new ArrayList<>();
-        String sql = "SELECT * from books";
+        String sql = "SELECT * FROM books";
         try (Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+
             while (rs.next()) {
-                Book book = new Book (
+                Book book = new Book(
                         rs.getString("id"),
                         rs.getString("title"),
                         rs.getString("author"),
                         rs.getString("year"),
                         rs.getInt("stock")
-                        
                 );
                 books.add(book);
-         
             }
         }
         return books;
     }
-    
+
     public Book getBookById(String id) throws SQLException {
-        String sql = "SELECT * FROM books where id = ?";
+        String sql = "SELECT * FROM books WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
-                return new Book(
-                        rs.getString("id"),
-                        rs.getString("title"),
-                        rs.getString("author"),
-                        rs.getString("year"),
-                        rs.getInt("stock")
-                );
+                if (rs.next()) {
+                    return new Book(
+                            rs.getString("id"),
+                            rs.getString("title"),
+                            rs.getString("author"),
+                            rs.getString("year"),
+                            rs.getInt("stock")
+                    );
+                } else {
+                    return null; // Data gak ketemu
+                }
             }
         }
-    } 
-    
-    public void UpdateBook(Book book) throws SQLException {
-        String sql = "UPDATE books SET title= ?, author = ?, year = ?, stock = ?, WHERE id = ?";
-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
-            stmt.setString(1, book.getTitle());
-            stmt.setString(2, book.getAuthor());
-            stmt.setString(3, book.getYear());
-            stmt.setInt(4, book.getStock());
-            stmt.setString(5,book.getId());
-            stmt.executeUpdate();
-        }
     }
-    
+
+    public void updateBook(Book book, String oldId) throws SQLException {
+        String sql = "UPDATE books SET id = ?, title = ?, author = ?, year = ?, stock = ? WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, book.getId());     // new ID
+        stmt.setString(2, book.getTitle());
+        stmt.setString(3, book.getAuthor());
+        stmt.setString(4, book.getYear());
+        stmt.setInt(5, book.getStock());
+        stmt.setString(6, oldId);            // old ID
+        stmt.executeUpdate();
+    }
+
     public void deleteBook(String id) throws SQLException {
         String sql = "DELETE FROM books WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -87,4 +82,3 @@ public class BookDAO {
         }
     }
 }
-

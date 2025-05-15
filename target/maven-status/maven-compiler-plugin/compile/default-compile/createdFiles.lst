@@ -1,5 +1,7 @@
 com\main\app\JAXRSConfiguration.class
+com\main\app\interfaces\Manageable.class
 com\main\app\controller\MemberViewServlet.class
+com\main\app\controller\BookServlet.class
 com\main\app\model\Book.class
 com\main\app\controller\AdminLoginServlet.class
 com\main\app\dao\BookDAO.class

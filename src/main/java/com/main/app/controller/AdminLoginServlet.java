@@ -14,8 +14,9 @@ import java.io.IOException;
 @WebServlet("/admin-login")
 public class AdminLoginServlet extends HttpServlet {
 
-    private AdminDAO adminDAO = new AdminDAO();
+    private final AdminDAO adminDAO = new AdminDAO();
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -25,7 +26,7 @@ public class AdminLoginServlet extends HttpServlet {
         if (adminDAO.login(username, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-            response.sendRedirect("admin-page.jsp");
+            response.sendRedirect("books");
         } else {
             request.setAttribute("error", "Username atau password salah!");
             request.getRequestDispatcher("admin-login.jsp").forward(request, response);

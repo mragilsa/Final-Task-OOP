@@ -13,7 +13,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         Connection conn = null;
         try {
-            String url = "jdbc:mysql://localhost:3306/db_oop"; 
+            String url = "jdbc:mysql://localhost:3306/oop_db"; 
             String user = "root"; //YOUR USERNAME 
             String password = ""; //YOUR PASSWORD
 
