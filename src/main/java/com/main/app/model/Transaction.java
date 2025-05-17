@@ -1,64 +1,86 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.main.app.model;
+import java.util.Date;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Transaction {
-    private int transactionId;
-    private String username;
-    private int bookId;
-    private String bookTitle; 
+   private String id;
+    private Member member;
+    private Book book;
     private Date borrowDate;
     private Date returnDate;
-    private int duration;
+    private String status;
 
     public Transaction() {}
 
-    public Transaction(String username, int bookId, Date borrowDate, Date returnDate, int duration) {
-        this.username = username;
-        this.bookId = bookId;
+    public Transaction(String id, Member member, Book book, Date borrowDate, Date returnDate, String status) {
+        this.id = id;
+        this.member = member;
+        this.book = book;
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
-        this.duration = duration;
+        this.status = status;
     }
 
-    public Transaction(int transactionId, String username, int bookId, Date borrowDate, Date returnDate, int duration) {
-        this.transactionId = transactionId;
-        this.username = username;
-        this.bookId = bookId;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public Date getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(Date borrowDate) {
         this.borrowDate = borrowDate;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
         this.returnDate = returnDate;
-        this.duration = duration;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void getDetails() {
+        System.out.println("Transaction ID: " + id);
+        System.out.println("Member: " + member.getUsername());
+        System.out.println("Book: " + book.getTitle());
+        System.out.println("Borrow Date: " + borrowDate);
+        System.out.println("Return Date: " + returnDate);
+        System.out.println("Status: " + status);
     }
     
-    public Transaction(int transactionId, String username, int bookId, String bookTitle, Date borrowDate, Date returnDate, int duration) {
-        this.transactionId = transactionId;
-        this.username = username;
-        this.bookId = bookId;
-        this.bookTitle = bookTitle;  // Mengisi bookTitle
-        this.borrowDate = borrowDate;
-        this.returnDate = returnDate;
-        this.duration = duration;
-    }
-    
-    public String getBookTitle() {
-        return bookTitle;
-    }
-
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
-    }
-
-    public int getTransactionId() { return transactionId; }
-    public String getUsername() { return username; }
-    public int getBookId() { return bookId; }
-    public Date getBorrowDate() { return borrowDate; }
-    public Date getReturnDate() { return returnDate; }
-    public int getDuration() { return duration; }
-
-    public void setTransactionId(int transactionId) { this.transactionId = transactionId; }
-    public void setUsername(String username) { this.username = username; }
-    public void setBookId(int bookId) { this.bookId = bookId; }
-    public void setBorrowDate(Date borrowDate) { this.borrowDate = borrowDate; }
-    public void setReturnDate(Date returnDate) { this.returnDate = returnDate; }
-    public void setDuration(int duration) { this.duration = duration; }
 }

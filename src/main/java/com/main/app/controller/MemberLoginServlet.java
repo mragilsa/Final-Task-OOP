@@ -28,7 +28,6 @@ public class MemberLoginServlet extends HttpServlet {
             if (member != null) {
                 HttpSession session = request.getSession();
                 session.setAttribute("member", member);
-                session.setAttribute("username", member.getUsername()); // <--- ini penting untuk ReturnBookServlet
                 
                 response.sendRedirect("member-page.jsp");
             } else {

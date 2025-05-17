@@ -1,29 +1,44 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.main.app.model;
 
+/**
+ *
+ * @author Farriz
+ */
 public class Book {
-
-    private int id;
+    private String id;
     private String title;
     private String author;
-    private int year;
+    private String year;
     private int stock;
 
-    public Book(int id, String title, String author, int year, int stock) {
+    public Book(String id, String title, String author, String year, int stock) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.year = year;
         this.stock = stock;
     }
+    
+    public Book() {
+        
+    }
 
-    public int getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
         return title;
     }
-    
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -31,20 +46,26 @@ public class Book {
     public String getAuthor() {
         return author;
     }
-    
+
     public void setAuthor(String author) {
         this.author = author;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
-    
-    public void setYear(int year) {
+
+    public void setYear(String year) { 
         this.year = year;
     }
 
     public int getStock() {
         return stock;
     }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+    
+    
 }
