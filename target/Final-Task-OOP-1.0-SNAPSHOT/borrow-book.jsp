@@ -1,0 +1,100 @@
+<%@ page import="java.util.*, java.sql.Date" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String message = request.getParameter("message") != null ? request.getParameter("message") : "";
+    String bookIdParam = request.getParameter("bookId");
+    boolean bookIdValid = bookIdParam != null && !bookIdParam.isEmpty();
+%>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Management System - Borrow Book</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Dosis', sans-serif;
+        }
+        .btn-member {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: transparent;
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.4rem 0.6rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            text-decoration: none;
+        }
+        .btn-member:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+        .btn-member svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col">
+
+    <div class="container mx-auto px-6 py-4 flex justify-end">
+        <a href="member-page.jsp" class="btn-member" title="Back to Member Page">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Member
+        </a>
+    </div>
+
+    <main class="flex-grow container mx-auto px-6 py-6 max-w-xl">
+        <div class="bg-white rounded-2xl shadow-sm p-8 transition">
+            <h2 class="text-3xl font-semibold mb-8 text-center text-gray-800 flex items-center justify-center gap-3">
+                Borrow Book
+            </h2>
+
+            <% if (!bookIdValid) { %>
+                <div class="text-center space-y-4">
+                    <p class="text-red-600 font-semibold">Book ID not found. Please return to the previous page.</p>
+                    <a href="member-page.jsp" class="text-gray-500 hover:text-blue-600 transition">Back to Member Page</a>
+                </div>
+            <% } else { %>
+                <form method="post" action="borrow-book" class="space-y-6">
+                    <input type="hidden" name="bookId" value="<%= bookIdParam %>">
+
+                    <div>
+                        <label for="duration" class="block mb-2 font-medium text-gray-700">Select loan duration:</label>
+                        <select name="duration" id="duration" required
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-150">
+                            <option value="7">7 Day</option>
+                            <option value="14">14 Day</option>
+                            <option value="30">30 Day</option>
+                        </select>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-4">
+                        <button
+                            type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-xl transition"
+                        >
+                            Loan Confirmation
+                        </button>
+                    </div>
+
+                    <% if (!message.isEmpty()) { %>
+                        <div class="text-center text-blue-600 font-semibold mt-4">
+                            <p><%= message %></p>
+                        </div>
+                    <% } %>
+                </form>
+            <% } %>
+        </div>
+    </main>
+</body>
+</html>
